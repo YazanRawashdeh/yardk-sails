@@ -1,0 +1,26 @@
+<div id="all" v-cloak>
+  <div class="container pt-5 pb-5">
+    <h1>My Meetings</h1>
+    <a style="width: 150px" class="btn btn-sm btn-outline-info" href="/meetings/create">Add Meeting</a>
+    <hr/>
+    <div v-for="(meeting, index) in meetings" class="meeting-item" :key="index">
+      <div class="row mb-3">
+        <div class="col-sm-6">
+          <h4>{{meeting.title}}</h4>
+        </div>
+        <div class="col-sm-6">
+          <span class="float-sm-right">
+            <a style="width: 150px" class="btn btn-sm btn-outline-info" href="/meetings/edit">Edit Meeting</a>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">Notes:</div>
+        <div class="col"><strong>{{meeting.notes}}</strong></div>
+      </div>
+      <hr/>
+    </div>
+  </div>
+
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

@@ -28,7 +28,7 @@ module.exports = {
 
       creator: {
         collection: 'user',
-        via: 'pets'
+        via: 'meetings'
       }
     },
   };

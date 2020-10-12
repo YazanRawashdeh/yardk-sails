@@ -50,6 +50,7 @@
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
+          <span class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0"><%= me.fullName %></span>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
           <!-- Only in desktop nav -->
           <div class="nav-item dropdown d-none d-sm-block">
@@ -160,6 +161,7 @@
     <script src="/js/pages/homepage.page.js"></script>
     <script src="/js/pages/legal/privacy.page.js"></script>
     <script src="/js/pages/legal/terms.page.js"></script>
+    <script src="/js/pages/meetings/all.page.js"></script>
     <!--SCRIPTS END-->
 
     <% /* Display an overlay if the current browser is not supported.
