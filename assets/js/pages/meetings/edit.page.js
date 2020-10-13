@@ -29,10 +29,7 @@ parasails.registerPage('edit', {
     //…
     _.extend(this, window.SAILS_LOCALS);
 
-    this.formData.meetingId = this.meetingId;
-    this.formData.title = this.meeting.title;
-    this.formData.notes = this.meeting.notes;
-    this.formData.time = this.meeting.time;
+    this.formData = this.meeting;
   },
   mounted: async function() {
     //…

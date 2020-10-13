@@ -25,8 +25,8 @@ module.exports = {
 
   fn: async function ({title,notes,time}) {
     // console.log(this.req.body,this.req.allParams())
-    const meetingId = this.req.param('meetingId');
-    await Meeting.updateOne(meetingId).set({title,notes,time});
+    const slug = this.req.param('slug');
+    await Meeting.updateOne({slug}).set({title,notes,time});
     console.log('done updating meeting')
   }
 };

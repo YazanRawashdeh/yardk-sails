@@ -25,11 +25,14 @@ module.exports = {
   },
 
   fn: async function ({title,notes,time}) {
+    const hashedString = `${title}${notes}${time}${+new Date()}`;
+    const slug = require('crypto').createHash('sha1').update(hashedString).digest('hex');
     const userId = this.req.me.id;
     await Meeting.create({
       title,
       notes,
       time,
+      slug,
       creator: userId
     });
   }

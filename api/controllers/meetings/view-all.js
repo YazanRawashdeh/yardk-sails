@@ -19,7 +19,6 @@ module.exports = {
   fn: async function () {
 
     const user = await User.findOne(this.req.me.id).populate('meetings');
-
     let meetings = [];
 
     if (user && user.meetings && user.meetings.length > 0)

@@ -17,12 +17,12 @@ module.exports = {
 
 
   fn: async function () {
-    const meetingId = this.req.param('meetingId');
-    const meeting = await Meeting.findOne(meetingId);
-    // Pass the meetingId which is coming from the request 
-    // to the view to be used by the view and JS (vue.js)
+    const slug = this.req.param('slug');
+    const meeting = await Meeting.findOne({slug});
+    console.log(meeting)
+    // Pass the meeting which is coming by querying for it using the slug 
+    // in the req to be used by the view and JS (vue.js)
     return {
-      meetingId,
       meeting
     };
 

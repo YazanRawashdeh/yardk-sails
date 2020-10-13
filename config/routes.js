@@ -33,7 +33,7 @@ module.exports.routes = {
   'GET /account/password':   { action: 'account/view-edit-password' },
   'GET /account/profile':    { action: 'account/view-edit-profile' },
   'GET /meetings':           { action: 'meetings/view-all' },
-  'GET /meetings/edit/:meetingId':  { action: 'meetings/view-edit' },
+  'GET /meetings/:slug':     { action: 'meetings/view-edit' },
   'GET /meetings/create':    { action: 'meetings/view-create' },
 
 
@@ -65,6 +65,6 @@ module.exports.routes = {
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
   'POST  /api/v1/meetings/create-meeting':               { action: 'meetings/create-meeting' },
-  'PATCH /api/v1/meetings/update-meeting/:meetingId':    { action: 'meetings/update-meeting' },
+  'PATCH /api/v1/meetings/update-meeting/:slug':    { action: 'meetings/update-meeting' },
 
 };
