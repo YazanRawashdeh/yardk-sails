@@ -61,7 +61,19 @@ module.exports.bootstrap = async function() {
   // By convention, this is a good place to set up fake data during development.
   await User.createEach([
     { emailAddress: 'admin@example.com', fullName: 'Ryan Dahl', isSuperAdmin: true, password: await sails.helpers.passwords.hashPassword('abc123') },
+    { emailAddress: 'a@amazon.com', fullName: 'Hamada Dahl', isSuperAdmin: true, password: await sails.helpers.passwords.hashPassword('a@amazon.com') },
   ]);
+
+  const someUser = await User.findOne({ emailAddress: 'a@amazon.com'});
+
+  if(someUser)
+    await Meeting.createEach([
+      { title: 'some title kqweqwen', notes: 'notes asd', time: '2020/20/10', creator: someUser.id, status: 'approved' },
+      { title: 'kqwemjkv some title', notes: 'notesqe', time: '2020/20/10', creator: someUser.id, status: 'approved' },
+      { title: 'ppoajdpi some title', notes: 'notes kqerj', time: '2020/20/10', creator: someUser.id, status: 'unapproved' },
+      { title: 'some adpasdmpkad title', notes: 'notes kadj', time: '2020/20/10', creator: someUser.id, status: 'approved' },
+      { title: 'some asdapsdmpoakdspok title', notes: 'notes jjja', time: '2020/20/10', creator: someUser.id, status: 'approved' }
+    ]);
 
   // Save new bootstrap version
   await sails.helpers.fs.writeJson.with({

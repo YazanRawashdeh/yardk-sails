@@ -1,0 +1,40 @@
+<div id="create" v-cloak>
+  <div class="container pt-5 pb-5">
+    <h1>Create Meeting</h1>
+    <hr/>
+    <ajax-form action="createMeeting" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-data="formData" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control" id="title" name="full-name" type="text"  :class="[formErrors.title ? 'is-invalid' : '']" v-model.trim="formData.title" placeholder="Sturgis P. Sturgeon" autocomplete="title" focus-first>
+            <div class="invalid-feedback" v-if="formErrors.title">Please enter your meeting title.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control" id="notes" name="notes"  :class="[formErrors.notes ? 'is-invalid' : '']" v-model.trim="formData.notes" placeholder="Notes" autocomplete="notes"></textarea>
+            <div class="invalid-feedback" v-if="formErrors.notes">Please enter some notes.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="time">Time</label>
+            <input class="form-control" id="time" name="time" type="date"  :class="[formErrors.time ? 'is-invalid' : '']" v-model.trim="formData.time">
+            <div class="invalid-feedback" v-if="formErrors.time">Please enter your meeting time.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group text-right">
+            <a class="btn btn-outline-info" href="/meetings">Cancel</a>
+            <ajax-button type="submit" :syncing="syncing" class="btn btn-dark">Save changes</ajax-button>
+          </div>
+        </div>
+      </div>
+    </ajax-form>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

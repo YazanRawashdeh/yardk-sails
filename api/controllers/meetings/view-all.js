@@ -18,40 +18,15 @@ module.exports = {
 
   fn: async function () {
 
-    // Respond with view.
-    // const meetings = await Meetings.find({
+    const user = await User.findOne(this.req.me.id).populate('meetings');
 
-    // });
+    let meetings = [];
+
+    if (user && user.meetings && user.meetings.length > 0)
+      meetings = user.meetings;
 
     return {
-      meetings : [{
-        title: "Meeting no.1",
-        status: "no", 
-        notes: "sadasdasdsad",
-        time: "2010/20/12",
-        creator: "",
-      },{
-        title: "Meeting no.2",
-        status: "yes", 
-        notes: "qeqweqwewqe",
-        time: "2010/20/12",
-        creator: "Hamada",
-      },{
-        title: "Meeting no.3",
-        status: "yes", 
-        notes: "tytutyutyu",
-        time: "2010/20/12",
-        creator: "Yazan",
-      },{
-        title: "Meeting no.4",
-        status: "yes", 
-        notes: "gghjhgjghj",
-        time: "2010/20/12",
-        creator: "Hamada",
-      },]
+      meetings
     };
-
   }
-
-
 };
