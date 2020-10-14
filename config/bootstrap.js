@@ -15,7 +15,7 @@ module.exports.bootstrap = async function() {
   var path = require('path');
 
   // This bootstrap version indicates what version of fake data we're dealing with here.
-  var HARD_CODED_DATA_VERSION = 0;
+  var HARD_CODED_DATA_VERSION = 1;
 
   // This path indicates where to store/look for the JSON file that tracks the "last run bootstrap info"
   // locally on this development computer (if we happen to be on a development computer).
@@ -68,11 +68,11 @@ module.exports.bootstrap = async function() {
 
   if(someUser)
     await Meeting.createEach([
-      { title: 'some title kqweqwen', notes: 'notes asd', time: '2020/20/10', creator: someUser.id, status: 'approved' },
-      { title: 'kqwemjkv some title', notes: 'notesqe', time: '2020/20/10', creator: someUser.id, status: 'approved' },
-      { title: 'ppoajdpi some title', notes: 'notes kqerj', time: '2020/20/10', creator: someUser.id, status: 'unapproved' },
-      { title: 'some adpasdmpkad title', notes: 'notes kadj', time: '2020/20/10', creator: someUser.id, status: 'approved' },
-      { title: 'some asdapsdmpoakdspok title', notes: 'notes jjja', time: '2020/20/10', creator: someUser.id, status: 'approved' }
+      { slug:'MeetingSlug-12',title: 'some title kqweqwen', notes: 'notes asd', time: '2020/20/10', creator: someUser.id, status: 'approved' },
+      { slug:'AOC-31',title: 'kqwemjkv some title', notes: 'notesqe', time: '2020/20/10', creator: someUser.id, status: 'approved' },
+      { slug:'CommunityShop-3',title: 'ppoajdpi some title', notes: 'notes kqerj', time: '2020/20/10', creator: someUser.id, status: 'unapproved' },
+      { slug:'123456',title: 'some adpasdmpkad title', notes: 'notes kadj', time: '2020/20/10', creator: someUser.id, status: 'approved' },
+      { slug:'slugish',title: 'some asdapsdmpoakdspok title', notes: 'notes jjja', time: '2020/20/10', creator: someUser.id, status: 'approved' }
     ]);
 
   // Save new bootstrap version

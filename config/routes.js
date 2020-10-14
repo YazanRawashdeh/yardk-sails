@@ -35,6 +35,7 @@ module.exports.routes = {
   'GET /meetings':           { action: 'meetings/view-all' },
   'GET /meetings/:slug':     { action: 'meetings/view-edit' },
   'GET /meetings/create':    { action: 'meetings/view-create' },
+  'GET /comments/publish':   { action: 'comments/publish' },
 
 
   //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
@@ -64,7 +65,11 @@ module.exports.routes = {
   'POST  /api/v1/entrance/send-password-recovery-email': { action: 'entrance/send-password-recovery-email' },
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
+  //meetings
   'POST  /api/v1/meetings/create-meeting':               { action: 'meetings/create-meeting' },
-  'PATCH /api/v1/meetings/update-meeting/:slug':    { action: 'meetings/update-meeting' },
+  'PATCH /api/v1/meetings/update-meeting/:slug':         { action: 'meetings/update-meeting' },
+  // comments
+  'POST /api/v1/comments/create-comment':               { action: 'comments/create-comment' },
+  'PATCH /api/v1/comments/update-comment/:slug':        { action: 'comments/update-comment' },
 
 };

@@ -10,7 +10,7 @@
  */
 
 module.exports.session = {
-
+  name: 'yardk.meetings.sid',
   /***************************************************************************
   *                                                                          *
   * Session secret is automatically generated when your new app is created   *

@@ -35,6 +35,33 @@
           </div>
         </div>
       </ajax-form>
+      <hr/>
+      <div class="row comments">
+        <div v-for="(comment,index) in comments" class="col-sm-3 comment" :key="index">
+          <small>Comment By {{comment.creator.fullName}}</small>
+          </br>
+          {{comment.text}}
+        </div>
+      </div>
+      <hr/>
+      <ajax-form action="createComment" :syncing.sync="syncingComment" :cloud-error.sync="cloudError" :form-data="formData" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedCommentForm()">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="text">Comment</label>
+              <textarea class="form-control" id="text" name="text"  :class="[formErrors.text ? 'is-invalid' : '']" v-model.trim="formData.text" placeholder="Comment.."></textarea>
+              <div class="invalid-feedback" v-if="formErrors.text">Please enter a comment.</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group text-right">
+              <ajax-button type="submit" :syncing="syncingComment" :disabled="formData.text == ''" class="btn btn-dark">Comment</ajax-button>
+            </div>
+          </div>
+        </div>
+      </ajax-form>
     </div>
   </div>
   <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

@@ -168,6 +168,11 @@ without necessarily having a billing card.`
     meetings: {
       collection: 'meeting',
       via: 'creator'
+    },
+
+    comments: {
+      collection: 'comment',
+      via: 'creator'
     }
   },
 };

@@ -6,8 +6,18 @@ parasails.registerPage('edit', {
     // Main syncing/loading state for this page.
     syncing: false,
 
+    // Comment syncing/loading state.
+    syncingComment: false,
+
+    commentButtonDisabled: true,
+
     // Form data
-    formData: { /* … */},
+    formData: {
+      text : ''
+    },
+
+    // Meeting Comments
+    comments: [ /* … */],
 
     // For tracking client-side validation errors in our form.
     // > Has property set to `true` for each invalid property in `formData`.
@@ -29,10 +39,30 @@ parasails.registerPage('edit', {
     //…
     _.extend(this, window.SAILS_LOCALS);
 
-    this.formData = this.meeting;
+    _.extend(this.formData, this.meeting);
+
+    this.comments = this.formData.comments;
   },
   mounted: async function() {
+    
     //…
+
+    // worked
+    // io.socket.on('connect', function onConnect(){
+    //   console.log('This socket is now connected to the Sails server.');
+    // });
+
+
+    io.socket.get('/comments/publish', (body, response) => {
+      // console.log(body)
+      // console.log(response);
+    })
+
+    const comments = this.comments;
+
+    io.socket.on('comment', (data) => {
+      comments.push(data.comment);
+    });
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -46,6 +76,10 @@ parasails.registerPage('edit', {
       // > to make sure the spinner stays there until the page navigation finishes.)
       this.syncing = true;
       window.location = '/meetings';
+    },
+
+    submittedCommentForm: async function() {
+      this.formData.text = '';
     },
 
   }

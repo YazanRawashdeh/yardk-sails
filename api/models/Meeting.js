@@ -35,6 +35,11 @@ module.exports = {
 
       creator: {
         model: 'user',
+      },
+
+      comments: {
+        collection: 'comment',
+        via: 'meeting'
       }
     },
   };
