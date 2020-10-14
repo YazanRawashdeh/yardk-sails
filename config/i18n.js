@@ -20,7 +20,8 @@ module.exports.i18n = {
   *                                                                          *
   ***************************************************************************/
 
-  locales: ['en', 'es', 'fr', 'de'],
+  // locales: ['en', 'es', 'fr', 'de'],
+  locales: ['en', 'ar'],
 
   /****************************************************************************
   *                                                                           *
@@ -31,7 +32,7 @@ module.exports.i18n = {
   *                                                                           *
   ****************************************************************************/
 
-  // defaultLocale: 'en',
+  defaultLocale: 'en',
 
   /****************************************************************************
   *                                                                           *
@@ -40,6 +41,18 @@ module.exports.i18n = {
   *                                                                           *
   ****************************************************************************/
 
-  // localesDirectory: 'config/locales'
+  localesDirectory: 'config/locales',
 
+  /****************************************************************************
+  *                                                                           *
+  * Maps language to direction, to tell the layout to render classes and      *
+  * attributes in the <html> tag and maybe used in other places where         *
+  * language direction is important                                           *
+  *                                                                           *
+  ****************************************************************************/
+
+  dirMap: {
+    'ar': 'rtl',
+    'en': 'ltr'
+  }
 };
