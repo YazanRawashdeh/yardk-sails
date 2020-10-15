@@ -1,4 +1,8 @@
 {
-  "Welcome": "Welcome",
-  "A brand new app.": "A brand new app."
-}
+	"Welcome": "Welcome",
+	"Account": "Account",
+	"Signout": "Sign out",
+	"EN": "English",
+	"AR": "العربية",
+	"Settings": "Settings"
+  }

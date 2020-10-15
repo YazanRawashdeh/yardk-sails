@@ -55,10 +55,12 @@
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/meetings">Meetings</a>
           <!-- Only in desktop nav -->
           <div class="nav-item dropdown d-none d-sm-block">
-            <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= __('Welcome') %>Account</a>
+            <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= __('Account') %></a>
             <div style="left: auto; right: 0;" class="dropdown-menu" aria-labelledby="header-account-menu-link">
-              <a class="dropdown-item" href="/account">Settings</a>
-              <a class="dropdown-item" href="/logout">Sign out</a>
+              <a class="dropdown-item" href="?lang=en"><%= __('EN') %></a>
+              <a class="dropdown-item" href="?lang=ar"><%= __('AR') %></a>
+              <a class="dropdown-item" href="/account"><%= __('Settings') %></a>
+              <a class="dropdown-item" href="/logout"><%= __('Signout') %></a>
             </div>
           </div>
           <!-- Only in mobile nav -->

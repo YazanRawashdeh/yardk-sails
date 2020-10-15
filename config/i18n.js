@@ -54,5 +54,7 @@ module.exports.i18n = {
   dirMap: {
     'ar': 'rtl',
     'en': 'ltr'
-  }
+  },
+
+  query: true
 };
