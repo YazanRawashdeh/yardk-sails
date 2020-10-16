@@ -57,8 +57,9 @@
           <div class="nav-item dropdown d-none d-sm-block">
             <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= __('Account') %></a>
             <div style="left: auto; right: 0;" class="dropdown-menu" aria-labelledby="header-account-menu-link">
-              <a class="dropdown-item" href="?lang=en"><%= __('EN') %></a>
-              <a class="dropdown-item" href="?lang=ar"><%= __('AR') %></a>
+              <% sails.config.i18n.locales.forEach(locale => { %>
+                <a class="dropdown-item" href="?lang=<%=locale%>"><%= __(locale.toUpperCase()) %></a>
+              <% })%>
               <a class="dropdown-item" href="/account"><%= __('Settings') %></a>
               <a class="dropdown-item" href="/logout"><%= __('Signout') %></a>
             </div>

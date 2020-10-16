@@ -70,7 +70,7 @@ and exposed as \`req.me\`.)`
 
 
   fn: async function ({emailAddress, password, rememberMe}) {
-
+    const req = this.req;
     // Look up by the email address.
     // (note that we lowercase it to ensure the lookup is always case-insensitive,
     // regardless of which database we're using)
@@ -87,26 +87,35 @@ and exposed as \`req.me\`.)`
     await sails.helpers.passwords.checkPassword(password, userRecord.password)
     .intercept('incorrect', 'badCombo');
 
+    // Log an action in the database that the user has logged In
+    // TODO: maybe have this in a helper
+    await Log.create({
+      fromUser: userRecord.id,
+      toUser: userRecord.id,
+      action: 'loggedIn',
+      entity: (req.headers['user-agent'] || '') // TODO: change to appropriate client
+    });
+
     // If "Remember Me" was enabled, then keep the session alive for
     // a longer amount of time.  (This causes an updated "Set Cookie"
     // response header to be sent as the result of this request -- thus
     // we must be dealing with a traditional HTTP request in order for
     // this to work.)
     if (rememberMe) {
-      if (this.req.isSocket) {
+      if (req.isSocket) {
         sails.log.warn(
           'Received `rememberMe: true` from a virtual request, but it was ignored\n'+
           'because a browser\'s session cookie cannot be reset over sockets.\n'+
           'Please use a traditional HTTP request instead.'
         );
       } else {
-        this.req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
+        req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
       }
     }//ﬁ
 
     // Modify the active session instance.
     // (This will be persisted when the response is sent.)
-    this.req.session.userId = userRecord.id;
+    req.session.userId = userRecord.id;
 
   }
 
