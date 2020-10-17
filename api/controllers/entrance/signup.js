@@ -75,18 +75,20 @@ the account verification message.)`,
 
   fn: async function ({emailAddress, password, fullName}) {
 
-    var newEmailAddress = emailAddress.toLowerCase();
+    const newEmailAddress = emailAddress.toLowerCase();
+    const nowDate = Date.now();
 
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
-    var newUserRecord = await User.create(_.extend({
+    const newUserRecord = await User.create(_.extend({
       fullName,
       emailAddress: newEmailAddress,
       password: await sails.helpers.passwords.hashPassword(password),
-      tosAcceptedByIp: this.req.ip
+      tosAcceptedByIp: this.req.ip,
+      userSince: nowDate
     }, sails.config.custom.verifyEmailAddresses? {
       emailProofToken: await sails.helpers.strings.random('url-friendly'),
-      emailProofTokenExpiresAt: Date.now() + sails.config.custom.emailProofTokenTTL,
+      emailProofTokenExpiresAt: nowDate + sails.config.custom.emailProofTokenTTL,
       emailStatus: 'unconfirmed'
     }:{}))
     .intercept('E_UNIQUE', 'emailAlreadyInUse')
@@ -104,6 +106,45 @@ the account verification message.)`,
         stripeCustomerId
       });
     }
+
+    // Log an action in the database that the user has signed up
+    // done in background to avoid latency
+    Log.create({
+      fromUser: newUserRecord.id,
+      toUser: newUserRecord.id,
+      action: 'loggedIn',
+      entity: (this.req.headers['user-agent'] || '') // TODO: change to appropriate client
+    }).exec(err =>{
+      if (err) {
+        sails.log.error('Background task failed: Could not add Log entry for user (`'+newUserRecord.id+'`).  Error details: '+err.stack);
+        return;
+      }
+      sails.log.verbose('Added a login Log entry for user `'+newUserRecord.id+'`.');
+    });
+
+    // add permission set for the new user.
+    // done in background to avoid latency
+    Permission.create({
+      forUser: newUserRecord.id
+    }).exec(err =>{
+      if (err) {
+        sails.log.error('Background task failed: Could not add Permissions for user (`'+newUserRecord.id+'`).  Error details: '+err.stack);
+        return;
+      }
+      sails.log.verbose('Added Permission set for user `'+newUserRecord.id+'`.');
+    });
+
+    // add preference set for the new user.
+    // done in background to avoid latency
+    Preference.create({
+      forUser: newUserRecord.id
+    }).exec(err =>{
+      if (err) {
+        sails.log.error('Background task failed: Could not add Preferences for user (`'+newUserRecord.id+'`).  Error details: '+err.stack);
+        return;
+      }
+      sails.log.verbose('Added Preferences set for user `'+newUserRecord.id+'`.');
+    });
 
     // Store the user's new id in their session.
     this.req.session.userId = newUserRecord.id;

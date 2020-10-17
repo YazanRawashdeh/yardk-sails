@@ -20,7 +20,6 @@ module.exports = function defineLangHook(sails) {
         '/*': {
           skipAssets: true,
           fn: async function (req, res, next) {
-            console.log(sails.helpers);
             let lang = sails.config.i18n.defaultLocale;
 
             const isLangCookie = req.cookies.lang && _.indexOf(sails.config.i18n.locales, req.cookies.lang) > -1;

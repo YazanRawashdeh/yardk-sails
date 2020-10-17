@@ -88,12 +88,18 @@ and exposed as \`req.me\`.)`
     .intercept('incorrect', 'badCombo');
 
     // Log an action in the database that the user has logged In
-    // TODO: maybe have this in a helper
-    await Log.create({
+    // done in background to avoid latency
+    Log.create({
       fromUser: userRecord.id,
       toUser: userRecord.id,
       action: 'loggedIn',
       entity: (req.headers['user-agent'] || '') // TODO: change to appropriate client
+    }).exec(err =>{
+      if (err) {
+        sails.log.error('Background task failed: Could not add Log entry for user (`'+userRecord.id+'`).  Error details: '+err.stack);
+        return;
+      }
+      sails.log.verbose('Added a login Log entry for user `'+userRecord.id+'`.');
     });
 
     // If "Remember Me" was enabled, then keep the session alive for

@@ -155,6 +155,12 @@ without necessarily having a billing card.`
       example: 1502844074211
     },
 
+    userSince: {
+      type: 'number',
+      description: 'A JS timestamp (epoch ms) representing the moment at which this user signed up.',
+      example: 1502844074211
+    },
+
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
@@ -173,6 +179,16 @@ without necessarily having a billing card.`
     comments: {
       collection: 'comment',
       via: 'creator'
-    }
+    },
+
+    permissions: {
+      collection: 'permission',
+      via: 'forUser'
+    },
+
+    preferences: {
+      collection: 'preference',
+      via: 'forUser'
+    },
   },
 };
