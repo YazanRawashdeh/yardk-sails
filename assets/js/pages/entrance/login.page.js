@@ -46,7 +46,11 @@ parasails.registerPage('login', {
       // > (Note that we re-enable the syncing state here.  This is on purpose--
       // > to make sure the spinner stays there until the page navigation finishes.)
       this.syncing = true;
-      window.location = '/';
+
+      const queryStrings = new URLSearchParams(location.search);
+      const redirect_url = queryStrings.get('redirect_url') || '/';
+
+      window.location = redirect_url;
     },
 
   }

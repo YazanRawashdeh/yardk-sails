@@ -21,7 +21,7 @@ parasails.registerPage('welcome', {
   //  ╚╗╔╝║╠╦╝ ║ ║ ║╠═╣║    ╠═╝╠═╣║ ╦║╣ ╚═╗
   //   ╚╝ ╩╩╚═ ╩ ╚═╝╩ ╩╩═╝  ╩  ╩ ╩╚═╝╚═╝╚═╝
   // Configure deep-linking (aka client-side routing)
-  virtualPagesRegExp: /^\/welcome\/?([^\/]+)?\/?/,
+  virtualPagesRegExp: /^\/app\/?([^\/]+)?\/?/,
   afterNavigate: async function(virtualPageSlug){
     // `virtualPageSlug` is determined by the regular expression above, which
     // corresponds with `:unused?` in the server-side route for this page.
@@ -40,7 +40,7 @@ parasails.registerPage('welcome', {
   methods: {
 
     clickOpenExampleModalButton: async function() {
-      this.goto('/welcome/hello');
+      this.goto('/app/hello');
       // Or, without deep links, instead do:
       // ```
       // this.modal = 'example';
@@ -48,7 +48,7 @@ parasails.registerPage('welcome', {
     },
 
     closeExampleModal: async function() {
-      this.goto('/welcome');
+      this.goto('/app');
       // Or, without deep links, instead do:
       // ```
       // this.modal = '';

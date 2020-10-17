@@ -37,7 +37,10 @@ module.exports = function unauthorized() {
       delete req.session.userId;
     }
 
-    return res.redirect('/login');
+    // before redirecting attach a "get back here" query param
+    const redirectUrl = !_.isEmpty(req.originalUrl) ? `?redirect_url=${req.originalUrl}` : '';
+
+    return res.redirect(`/login${redirectUrl}`);
   }
 
 };
