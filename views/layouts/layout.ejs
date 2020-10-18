@@ -58,7 +58,9 @@
             <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= __('Account') %></a>
             <div style="left: auto; right: 0;" class="dropdown-menu" aria-labelledby="header-account-menu-link">
               <% sails.config.i18n.locales.forEach(locale => { %>
-                <a class="dropdown-item" href="?lang=<%=locale%>"><%= __(locale.toUpperCase()) %></a>
+                <a class="dropdown-item" href="?lang=<%=locale%>" data-lang="<%=locale%>">
+                  <%= __(locale.toUpperCase()) %>
+                </a>
               <% })%>
               <a class="dropdown-item" href="/account"><%= __('Settings') %></a>
               <a class="dropdown-item" href="/logout"><%= __('Signout') %></a>
@@ -174,6 +176,13 @@
     (Relies on `bowser`, which is loaded inline above.) */ %>
     <script>
     (function(){
+      var domain = window.location.origin + window.location.pathname;
+      var urlParams = new URLSearchParams(window.location.search);
+      $('a[data-lang]').each(function(i,el){
+        urlParams.set('lang', $(el).attr('data-lang'));
+        $(el).attr('href',domain + '?' + urlParams);
+      })
+
       if (typeof bowser !== 'undefined') {
         // --------------------------------------------------------------------
         // Additional compatibility tips:
