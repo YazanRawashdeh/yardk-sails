@@ -13,11 +13,6 @@ module.exports = {
       example: 'my comment',
     },
 
-    meetingSlug: {
-      description: 'The meeting id in which this comment was added.',
-      example: 'd94ed771bcecb16e12dc1fd0292358020368b22b',
-    },
-
     id: {
       description: 'id in which this comment was added.',
       example: 'd94ed771bcecb16e12dc1fd0292358020368b22b',
@@ -30,7 +25,7 @@ module.exports = {
   },
 
 
-  fn: async function ({text,id,meetingSlug}) {
+  fn: async function ({text,id}) {
     const userId = this.req.me.id;
     const hashedString = `${text}${userId}${+new Date()}`;
     const slug = require('crypto').createHash('sha1').update(hashedString).digest('hex');

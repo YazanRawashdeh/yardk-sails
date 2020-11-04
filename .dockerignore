@@ -1,2 +1,3 @@
 # ignore copying node_modules to the images' working dir when building it.
 node_modules
+npm-debug.log

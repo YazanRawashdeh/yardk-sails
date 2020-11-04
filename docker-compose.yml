@@ -1,0 +1,27 @@
+# https://docs.docker.com/compose/compose-file/
+version: "3.8"
+services: 
+    app:
+        container_name: yardk-sails
+        # restart: always
+        restart: "no"
+        build: .
+        ports: 
+            - "9000:1337"
+        volumes:
+            - .:/app
+        # environment: 
+        #     NODE_ENV: production
+        links:
+            - redis
+            - mongo
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports: 
+            - "27017:27017"
+    redis:
+        container_name: redis
+        image: redis
+        ports:
+            - "6379:6379"
