@@ -12,7 +12,8 @@ parasails.registerPage('signup', {
 
     // Form rules
     formRules: {
-      fullName: {required: true},
+      firstName: {required: true},
+      lastName: {required: true},
       emailAddress: {required: true, isEmail: true},
       age: {required: true},
       password: {required: true},

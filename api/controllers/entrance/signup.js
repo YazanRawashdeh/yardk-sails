@@ -35,11 +35,18 @@ the account verification message.)`,
       description: 'The unencrypted password to use for the new account.'
     },
 
-    fullName:  {
+    firstName:  {
       required: true,
       type: 'string',
-      example: 'Frida Kahlo de Rivera',
-      description: 'The user\'s full name.',
+      example: 'Frida',
+      description: 'The user\'s first name.',
+    },
+
+    lastName:  {
+      required: true,
+      type: 'string',
+      example: 'Rivera',
+      description: 'The user\'s last name.',
     },
 
     age:  {
@@ -60,7 +67,7 @@ the account verification message.)`,
 
     invalid: {
       responseType: 'badRequest',
-      description: 'The provided fullName, password and/or email address are invalid.',
+      description: 'The provided name, password and/or email address are invalid.',
       extendedDescription: 'If this request was sent from a graphical user interface, the request '+
       'parameters should have been validated/coerced _before_ they were sent.'
     },
@@ -73,7 +80,7 @@ the account verification message.)`,
   },
 
 
-  fn: async function ({emailAddress, password, fullName}) {
+  fn: async function ({emailAddress, password, firstName , lastName}) {
 
     const newEmailAddress = emailAddress.toLowerCase();
     const nowDate = Date.now();
@@ -81,7 +88,8 @@ the account verification message.)`,
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
     const newUserRecord = await User.create(_.extend({
-      fullName,
+      firstName: firstName,
+      lastName: lastName,
       emailAddress: newEmailAddress,
       password: await sails.helpers.passwords.hashPassword(password),
       tosAcceptedByIp: this.req.ip,
@@ -156,7 +164,7 @@ the account verification message.)`,
         subject: 'Please confirm your account',
         template: 'email-verify-account',
         templateData: {
-          fullName,
+          fullName: newUserRecord.firstName + " " + newUserRecord.lastName,
           token: newUserRecord.emailProofToken
         }
       });

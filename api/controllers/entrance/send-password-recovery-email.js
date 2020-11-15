@@ -55,7 +55,7 @@ module.exports = {
       subject: 'Password reset instructions',
       template: 'email-reset-password',
       templateData: {
-        fullName: userRecord.fullName,
+        fullName: userRecord.firstName + " " + userRecord.lastName,
         token: token
       }
     });

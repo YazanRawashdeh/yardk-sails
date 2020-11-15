@@ -50,7 +50,7 @@
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
-          <span class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0"><%= me.fullName %></span>
+          <span class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0"><%= me.firstName %> <%= me.lastName %></span>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/meetings">Meetings</a>
           <!-- Only in desktop nav -->

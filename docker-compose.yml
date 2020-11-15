@@ -8,8 +8,8 @@ services:
         build: .
         ports: 
             - "9000:1337"
-        volumes:
-            - .:/app
+        # volumes:
+        #     - .:/app
         # environment: 
         #     NODE_ENV: production
         links:

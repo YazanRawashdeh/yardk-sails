@@ -23,11 +23,18 @@ module.exports = {
       example: 'I want to buy stuff.'
     },
 
-    fullName: {
+    firstName: {
       required: true,
       type: 'string',
-      description: 'The full name of the human sending this message.',
-      example: 'Hermione Granger'
+      description: 'The first name of the human sending this message.',
+      example: 'Hermione'
+    },
+
+    lastName: {
+      required: true,
+      type: 'string',
+      description: 'The last name of the human sending this message.',
+      example: 'Granger'
     },
 
     message: {
@@ -48,7 +55,7 @@ module.exports = {
   },
 
 
-  fn: async function({emailAddress, topic, fullName, message}) {
+  fn: async function({emailAddress, topic, firstName , lastName, message}) {
 
     if (!sails.config.custom.internalEmailAddress) {
       throw new Error(
@@ -66,7 +73,7 @@ your custom config -- usually in \`config/custom.js\`, \`config/staging.js\`,
       template: 'internal/email-contact-form',
       layout: false,
       templateData: {
-        contactName: fullName,
+        contactName: firstName + " " + lastName,
         contactEmail: emailAddress,
         topic,
         message,

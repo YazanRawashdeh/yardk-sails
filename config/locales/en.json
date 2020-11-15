@@ -4,5 +4,7 @@
 	"Signout": "Sign out",
 	"EN": "English",
 	"AR": "العربية",
-	"Settings": "Settings"
+	"Settings": "Settings",
+  "FirstName": "First Name",
+  "LastName": "Last Name"
   }

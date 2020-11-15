@@ -38,7 +38,7 @@
       <hr/>
       <div class="row comments">
         <div v-for="(comment,index) in comments" class="col-sm-3 comment" :key="index">
-          <small>Comment By {{comment.creator.fullName}}</small>
+          <small>Comment By {{comment.creator.firstName}} {{comment.creator.lastName}}</small>
           </br>
           {{comment.text}}
         </div>
