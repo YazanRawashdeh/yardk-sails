@@ -9,9 +9,9 @@ services:
         ports: 
             - "9000:1337"
         volumes:
-            - .:/app
-        # environment: 
-        #     NODE_ENV: production
+            - ./:/app
+        environment:
+            MONGO_HOST: mongo
         links:
             - redis
             - mongo

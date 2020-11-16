@@ -39,5 +39,11 @@
   "license": "",
   "engines": {
     "node": "^14.8"
+  },
+  "nodemonConfig": {
+    "ignore": ["assets/*", ".tmp/*","views/*"],
+    "events": {
+      "restart": "osascript -e 'display notification \"app restarted\" with title \"nodemon\"'"
+    }
   }
 }

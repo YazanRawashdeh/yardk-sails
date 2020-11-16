@@ -60,6 +60,8 @@ module.exports.routes = {
   'PUT   /api/v1/account/update-password':            { action: 'account/update-password' },
   'PUT   /api/v1/account/update-profile':             { action: 'account/update-profile' },
   'PUT   /api/v1/account/update-billing-card':        { action: 'account/update-billing-card' },
+  'POST  /api/v1/account/create-agent':                { action: 'account/create-agent' },
+  'GET   /api/v1/account/get-agents':                    { action: 'account/get-agents' },
   'PUT   /api/v1/entrance/login':                        { action: 'entrance/login' },
   'POST  /api/v1/entrance/signup':                       { action: 'entrance/signup' },
   'POST  /api/v1/entrance/send-password-recovery-email': { action: 'entrance/send-password-recovery-email' },
@@ -71,5 +73,5 @@ module.exports.routes = {
   // comments
   'POST /api/v1/comments/create-comment':               { action: 'comments/create-comment' },
   'PATCH /api/v1/comments/update-comment/:slug':        { action: 'comments/update-comment' },
-
+  
 };

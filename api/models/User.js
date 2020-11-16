@@ -190,5 +190,15 @@ without necessarily having a billing card.`
       collection: 'preference',
       via: 'forUser'
     },
+
+    employer: {
+      collection: 'user',
+      via: 'agents'
+    },
+
+    agents: {
+      collection: 'user',
+      via: 'employer'
+    },
   },
 };

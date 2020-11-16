@@ -6,8 +6,12 @@ parasails.registerPage('edit-profile', {
     // Main syncing/loading state for this page.
     syncing: false,
 
+    userSyncing: false,
+
     // Form data
     formData: { /* … */ },
+
+    userFormData: { /* … */ },
 
     // For tracking client-side validation errors in our form.
     // > Has property set to `true` for each invalid property in `formData`.
@@ -19,8 +23,17 @@ parasails.registerPage('edit-profile', {
       emailAddress: {required: true, isEmail: true},
     },
 
+    userFormRules: {
+      userFullName: {required: true},
+      userEmailAddress: {required: true, isEmail: true},
+    },
+
     // Server error state for the form
     cloudError: '',
+
+    userCloudError: '',
+
+    agents: []
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -33,6 +46,8 @@ parasails.registerPage('edit-profile', {
   },
   mounted: async function() {
     //…
+
+    this.getAgents();
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -46,6 +61,14 @@ parasails.registerPage('edit-profile', {
       // > to make sure the spinner stays there until the page navigation finishes.)
       this.syncing = true;
       window.location = '/account';
+    },
+
+    addAgent: async function() {
+      this.userSyncing = true;
+    },
+
+    getAgents: async function() {
+      this.agents = await Cloud.getAgents();
     },
 
   }

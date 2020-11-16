@@ -15,7 +15,7 @@ module.exports.bootstrap = async function() {
   var path = require('path');
 
   // This bootstrap version indicates what version of fake data we're dealing with here.
-  var HARD_CODED_DATA_VERSION = 0;
+  var HARD_CODED_DATA_VERSION = 1;
 
   // This path indicates where to store/look for the JSON file that tracks the "last run bootstrap info"
   // locally on this development computer (if we happen to be on a development computer).
@@ -66,7 +66,7 @@ module.exports.bootstrap = async function() {
 
   const someUser = await User.findOne({ emailAddress: 'a@amazon.com'});
 
-  if(someUser)
+  if(someUser) {
     await Meeting.createEach([
       { slug:'MeetingSlug-12',title: 'some title kqweqwen', notes: 'notes asd', time: '2020/20/10', creator: someUser.id, status: 'approved' },
       { slug:'AOC-31',title: 'kqwemjkv some title', notes: 'notesqe', time: '2020/20/10', creator: someUser.id, status: 'approved' },
@@ -74,6 +74,12 @@ module.exports.bootstrap = async function() {
       { slug:'123456',title: 'some adpasdmpkad title', notes: 'notes kadj', time: '2020/20/10', creator: someUser.id, status: 'approved' },
       { slug:'slugish',title: 'some asdapsdmpoakdspok title', notes: 'notes jjja', time: '2020/20/10', creator: someUser.id, status: 'approved' }
     ]);
+
+    await User.createEach([
+      { emailAddress: 'agetn1@example.com', fullName: 'AGENT 1', isSuperAdmin: false, employer: someUser.id , password: await sails.helpers.passwords.hashPassword('agetn1@example.com') },
+      { emailAddress: 'agent2@amazon.com', fullName: 'AGENT 2', isSuperAdmin: false, employer: someUser.id , password: await sails.helpers.passwords.hashPassword('agent2@amazon.com') },
+    ]);
+  }
 
   // Save new bootstrap version
   await sails.helpers.fs.writeJson.with({
