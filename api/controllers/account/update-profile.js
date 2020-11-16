@@ -9,10 +9,12 @@ module.exports = {
 
   inputs: {
 
-    fullName: {
+    firstName: {
       type: 'string'
     },
-
+    lastName: {
+      type: 'string'
+    },
     emailAddress: {
       type: 'string'
     },
@@ -30,7 +32,7 @@ module.exports = {
   },
 
 
-  fn: async function ({fullName, emailAddress}) {
+  fn: async function ({firstName, lastName, emailAddress}) {
 
     var newEmailAddress = emailAddress;
     if (newEmailAddress !== undefined) {
@@ -73,9 +75,10 @@ module.exports = {
 
 
     // Start building the values to set in the db.
-    // (We always set the fullName if provided.)
+    // (We always set the firstName and lastName if provided.)
     var valuesToSet = {
-      fullName,
+      firstName,
+      lastName,
     };
 
     switch (desiredEmailEffect) {
@@ -148,7 +151,8 @@ module.exports = {
         subject: 'Your account has been updated',
         template: 'email-verify-new-email',
         templateData: {
-          fullName: fullName||this.req.me.fullName,
+          firstName: firstName || this.req.me.firstName,
+          lastName: lastName || this.req.me.lastName,
           token: valuesToSet.emailProofToken
         }
       });

@@ -6,14 +6,19 @@
       <hr/>
       <ajax-form action="signup" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-errors.sync="formErrors" :form-data="formData" :form-rules="formRules" @submitted="submittedForm()">
         <div class="form-group">
-          <label for="full-name">Full name</label>
-          <input class="form-control" id="full-name" type="text"  :class="[formErrors.fullName ? 'is-invalid' : '']" v-model.trim="formData.fullName" placeholder="Sturgis P. Sturgeon" autocomplete="name" focus-first>
-          <div class="invalid-feedback" v-if="formErrors.fullName">Please enter your full name.</div>
+          <label for="first-name"><%= __('FirstName') %></label>
+          <input class="form-control" id="first-name" type="text"  :class="[formErrors.firstName ? 'is-invalid' : '']" v-model.trim="formData.firstName" placeholder="Sturgis" autocomplete="name" focus-first>
+          <div class="invalid-feedback" v-if="formErrors.firstName">Please enter your first name.</div>
+        </div>
+        <div class="form-group">
+          <label for="last-name"><%= __('LastName') %></label>
+          <input class="form-control" id="last-name" type="text"  :class="[formErrors.lastName ? 'is-invalid' : '']" v-model.trim="formData.lastName" placeholder="P. Sturgeon" autocomplete="name">
+          <div class="invalid-feedback" v-if="formErrors.lastName">Please enter your last name.</div>
         </div>
         <div class="form-group">
           <label for="age">Age</label>
           <input class="form-control" id="age" type="number"  :class="[formErrors.age ? 'is-invalid' : '']" v-model.trim="formData.age">
-          <div class="invalid-feedback" v-if="formErrors.fullName">Please enter your age.</div>
+          <div class="invalid-feedback" v-if="formErrors.age">Please enter your age.</div>
         </div>
         <div class="form-group">
           <label for="email-address">Email address</label>

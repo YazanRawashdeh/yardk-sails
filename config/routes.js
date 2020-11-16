@@ -70,6 +70,7 @@ module.exports.routes = {
   //meetings
   'POST  /api/v1/meetings/create-meeting':               { action: 'meetings/create-meeting' },
   'PATCH /api/v1/meetings/update-meeting/:slug':         { action: 'meetings/update-meeting' },
+  'GET /api/v1/meetings/delete/:slug':                   { action: 'meetings/delete-meeting' },
   // comments
   'POST /api/v1/comments/create-comment':               { action: 'comments/create-comment' },
   'PATCH /api/v1/comments/update-comment/:slug':        { action: 'comments/update-comment' },
