@@ -199,14 +199,13 @@ without necessarily having a billing card.`
       via: 'forUser'
     },
 
-    employer: {
-      collection: 'user',
-      via: 'agents'
-    },
-
     agents: {
       collection: 'user',
       via: 'employer'
     },
-  },
+
+    employer: {
+      model: 'user'
+    }
+  }
 };

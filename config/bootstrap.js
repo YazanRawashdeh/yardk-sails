@@ -76,8 +76,8 @@ module.exports.bootstrap = async function() {
     ]);
 
     await User.createEach([
-      { emailAddress: 'agetn1@example.com', fullName: 'AGENT 1', isSuperAdmin: false, employer: someUser.id , password: await sails.helpers.passwords.hashPassword('agetn1@example.com') },
-      { emailAddress: 'agent2@amazon.com', fullName: 'AGENT 2', isSuperAdmin: false, employer: someUser.id , password: await sails.helpers.passwords.hashPassword('agent2@amazon.com') },
+      { emailAddress: 'agetn1@example.com', firstName: 'AGENT',lastName: '1', isSuperAdmin: false, employer: someUser.id , password: await sails.helpers.passwords.hashPassword('agetn1@example.com') },
+      { emailAddress: 'agent2@amazon.com', firstName: 'AGENT',lastName: '2', isSuperAdmin: false, employer: someUser.id , password: await sails.helpers.passwords.hashPassword('agent2@amazon.com') },
     ]);
   }
 
