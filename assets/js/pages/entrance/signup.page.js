@@ -4,7 +4,9 @@ parasails.registerPage('signup', {
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
     // Form data
-    formData: { /* … */ },
+    formData: {
+      showPassword: false,
+    },
 
     // For tracking client-side validation errors in our form.
     // > Has property set to `true` for each invalid property in `formData`.
@@ -45,7 +47,9 @@ parasails.registerPage('signup', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
+    togglePassword: async function () {
+      this.formData.showPassword = !this.formData.showPassword;
+    },
     submittedForm: async function() {
       if(this.isEmailVerificationRequired) {
         // If email confirmation is enabled, show the success message.

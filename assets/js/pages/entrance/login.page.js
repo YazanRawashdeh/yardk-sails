@@ -9,6 +9,7 @@ parasails.registerPage('login', {
     // Form data
     formData: {
       rememberMe: true,
+      showPassword: false,
     },
 
     // For tracking client-side validation errors in our form.
@@ -40,7 +41,9 @@ parasails.registerPage('login', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
+    togglePassword: async function () {
+      this.formData.showPassword = !this.formData.showPassword;
+    },
     submittedForm: async function() {
       // Redirect to the logged-in dashboard on success.
       // > (Note that we re-enable the syncing state here.  This is on purpose--
@@ -52,6 +55,5 @@ parasails.registerPage('login', {
 
       window.location = redirect_url;
     },
-
   }
 });
