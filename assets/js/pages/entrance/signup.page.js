@@ -45,7 +45,17 @@ parasails.registerPage('signup', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
+    togglePassword: async function ( passwordInputId , iconId) {
+      var passwordInput = $('#' + passwordInputId)[0],
+        icon = $('#' + iconId)[0];
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.remove("fa-eye-slash");
+      }
+    },
     submittedForm: async function() {
       if(this.isEmailVerificationRequired) {
         // If email confirmation is enabled, show the success message.

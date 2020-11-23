@@ -40,7 +40,17 @@ parasails.registerPage('login', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
+    togglePassword: async function ( passwordInputId , iconId) {
+      var passwordInput = $('#' + passwordInputId)[0],
+        icon = $('#' + iconId)[0];
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.remove("fa-eye-slash");
+      }
+    },
     submittedForm: async function() {
       // Redirect to the logged-in dashboard on success.
       // > (Note that we re-enable the syncing state here.  This is on purpose--
@@ -52,6 +62,5 @@ parasails.registerPage('login', {
 
       window.location = redirect_url;
     },
-
   }
 });
