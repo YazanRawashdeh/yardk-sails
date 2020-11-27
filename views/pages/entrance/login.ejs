@@ -12,13 +12,11 @@
                     <div class="invalid-feedback" v-if="formErrors.emailAddress">Please provide a valid email address.
                     </div>
                 </div>
-                <div id="password-container" class="form-group">
+                <div class="form-group password-container">
                         <input id="password" :type="[ formData.showPassword ? 'text' : 'password' ]" class="form-control" placeholder="Password"
                                :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password"
                                autocomplete="current-password">
-                        <button type="button" id="btn-toggle" class="toggle" @click="togglePassword()">
-                            <i id="eyeIcon" :class="[ formData.showPassword ? 'fa fa-eye' : 'fa fa-eye fa-eye-slash' ]"></i>
-                        </button>
+                        <i :class="[ formData.showPassword ? 'fa fa-eye' : 'fa fa-eye-slash' ]" class="toggle-password" @click="togglePassword()"></i>
                         <div class="invalid-feedback" v-if="formErrors.password">Please enter your password.</div>
                 </div>
                 <div class="form-group form-check remember-me">

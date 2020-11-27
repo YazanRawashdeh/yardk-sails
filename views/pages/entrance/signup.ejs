@@ -28,15 +28,12 @@
                     <div class="invalid-feedback" v-if="formErrors.emailAddress">Please enter a valid email address.
                     </div>
                 </div>
-                <div id="signup-password-container" class="form-group">
+                <div class="form-group password-container">
                     <label for="signup-password">Choose a password</label>
                     <input class="form-control" id="signup-password" :type="[ formData.showPassword ? 'text' : 'password' ]"
                            :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password"
                            placeholder="••••••••" autocomplete="new-password">
-                    <button type="button" id="signup-btn-toggle1" class="toggle"
-                            @click="togglePassword()">
-                        <i id="signup-eye-icon1" :class="[ formData.showPassword ? 'fa fa-eye' : 'fa fa-eye fa-eye-slash' ]"></i>
-                    </button>
+                    <i :class="[ formData.showPassword ? 'fa fa-eye' : 'fa fa-eye-slash' ]" class="toggle-password" @click="togglePassword()"></i>
                     <div class="invalid-feedback" v-if="formErrors.password">Please enter a password.</div>
                 </div>
         <div class="form-group">
