@@ -106,6 +106,21 @@ module.exports = function(grunt) {
       }
     },
 
+    devStylesRTL: {
+      options: {
+        startTag: '<!--RTLSTYLES-->',
+        endTag: '<!--RTLSTYLES END-->',
+        fileTmpl: '<link rel="stylesheet" href="%s">',
+        appRoot: '.tmp/public'
+      },
+
+      files: {
+        '.tmp/public/**/*.html': require('../pipeline').rtlcssFilesToInject,
+        'views/**/*.html': require('../pipeline').rtlcssFilesToInject,
+        'views/**/*.ejs': require('../pipeline').rtlcssFilesToInject
+      }
+    },
+
     devStylesBuild: {
       options: {
         startTag: '<!--STYLES-->',

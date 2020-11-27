@@ -35,11 +35,24 @@ var cssFilesToInject = [
 
   // Bring in `.css` files for themes and style guides (e.g. Bootstrap, Foundation)
   'dependencies/**/*.css',
+  '!dependencies/**/*.rtl.css',
 
   // All of the rest of your custom `.css` files will be injected here,
   // in no particular order.  To customize the ordering, add additional
   // items here, _above_ this one.
-  'styles/**/*.css'
+  'styles/**/*.css',
+  '!styles/**/*.rtl.css',
+];
+
+var rtlcssFilesToInject = [
+
+  // Bring in `.css` files for themes and style guides (e.g. Bootstrap, Foundation)
+  'dependencies/**/*.rtl.css',
+
+  // All of the rest of your custom `.css` files will be injected here,
+  // in no particular order.  To customize the ordering, add additional
+  // items here, _above_ this one.
+  'styles/**/*.rtl.css'
 ];
 
 

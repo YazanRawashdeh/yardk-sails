@@ -17,9 +17,10 @@
   },
   "devDependencies": {
     "eslint": "5.16.0",
+    "grunt": "1.0.4",
+    "grunt-rtlcss": "^2.0.2",
     "htmlhint": "0.11.0",
     "lesshint": "6.3.6",
-    "grunt": "1.0.4",
     "sails-hook-grunt": "^4.0.0"
   },
   "scripts": {
@@ -41,7 +42,11 @@
     "node": "^14.8"
   },
   "nodemonConfig": {
-    "ignore": ["assets/*", ".tmp/*","views/*"],
+    "ignore": [
+      "assets/*",
+      ".tmp/*",
+      "views/*"
+    ],
     "events": {
       "restart": "osascript -e 'display notification \"app restarted\" with title \"nodemon\"'"
     }
