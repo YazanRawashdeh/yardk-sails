@@ -10,6 +10,22 @@
 module.exports = function(grunt) {
     grunt.config.set('rtlcss', {
         dev: {
+            options: {
+                opts: {
+                    autoRename: true,
+                    stringMap: [
+                        {
+                            "name"    : "next-prev",
+                            "search"  : ["next"],
+                            "replace" : ["prev"],
+                            'options' : {
+                                'scope' : '*',
+                                'ignoreCase' : true
+                            }
+                        }
+                    ]
+                }
+            },
             expand : true,
             cwd    : '.tmp/public/',
             dest   : '.tmp/public/',
