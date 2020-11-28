@@ -18,6 +18,17 @@ module.exports = {
 
 
   fn: async function (inputs) {
-    return []
+    const userId = this.req.me.id;
+    const userWithAgents = await User.findOne({
+      id: userId
+    }).populate('agents');
+
+    const agents = userWithAgents.agents;
+
+    _.each(agents, agent => {
+      sails.helpers.redactUser(agent);
+    })
+
+    return agents || [];
   }
 };

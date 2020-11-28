@@ -166,7 +166,8 @@ without necessarily having a billing card.`
     userSince: {
       type: 'number',
       description: 'A JS timestamp (epoch ms) representing the moment at which this user signed up.',
-      example: 1502844074211
+      example: 1502844074211,
+      defaultsTo: _.now()
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -207,5 +208,10 @@ without necessarily having a billing card.`
     employer: {
       model: 'user'
     }
+  },
+
+  beforeUpdate: function (valuesToSet, proceed) {
+    valuesToSet.updatedAt = _.now();
+    return proceed();
   }
 };

@@ -25,7 +25,8 @@ parasails.registerPage('edit-profile', {
     },
 
     userFormRules: {
-      userFullName: {required: true},
+      userFirstName: {required: true},
+      userLastName: {required: true},
       userEmailAddress: {required: true, isEmail: true},
     },
 
@@ -34,7 +35,9 @@ parasails.registerPage('edit-profile', {
 
     userCloudError: '',
 
-    agents: []
+    agents: [],
+
+    tab: ''
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -52,6 +55,23 @@ parasails.registerPage('edit-profile', {
     this.getAgents();
   },
 
+  //  ╦  ╦╦╦═╗╔╦╗╦ ╦╔═╗╦    ╔═╗╔═╗╔═╗╔═╗╔═╗
+  //  ╚╗╔╝║╠╦╝ ║ ║ ║╠═╣║    ╠═╝╠═╣║ ╦║╣ ╚═╗
+  //   ╚╝ ╩╩╚═ ╩ ╚═╝╩ ╩╩═╝  ╩  ╩ ╩╚═╝╚═╝╚═╝
+  // Configure deep-linking (aka client-side routing)
+  virtualPagesRegExp: /^\/account\/profile\/?([^\/]+)?\/?/,
+  afterNavigate: async function(virtualPageSlug){
+    // `virtualPageSlug` is determined by the regular expression above, which
+    // corresponds with `:unused?` in the server-side route for this page.
+    switch (virtualPageSlug) {
+      case 'agents':
+        this.tab = 'agents';
+        break;
+      default:
+        this.tab = '';
+    }
+  },
+
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
@@ -67,11 +87,17 @@ parasails.registerPage('edit-profile', {
 
     addAgent: async function() {
       this.userSyncing = true;
+      this.getAgents();
+      this.userSyncing = false;
     },
 
     getAgents: async function() {
       this.agents = await Cloud.getAgents();
     },
 
+    changeTab: async function(tab) {
+      //TODO: manage fades.
+      this.goto(`/account/profile/${tab}`);
+    }
   }
 });

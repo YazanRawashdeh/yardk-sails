@@ -3,18 +3,18 @@
     <h1>Settings</h1>
     <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+        <a class="nav-link" :class="[ tab == '' ? 'active' : '']" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" @click="changeTab('')">
           Personal Information
         </a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+        <a class="nav-link" :class="[ tab == 'agents' ? 'active' : '']" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" @click="changeTab('agents')">
           Agents
         </a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active mt-4" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="tab-pane fade mt-4" :class="[ tab == '' ? 'active show' : '']" id="home" role="tabpanel" aria-labelledby="home-tab">
         <ajax-form action="updateProfile" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-data="formData" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()">
           <div class="row">
             <div class="col-sm-6">
@@ -46,31 +46,32 @@
           </div>
         </ajax-form>
       </div>
-      <div class="tab-pane fade mt-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+      <div class="tab-pane fade mt-4" :class="[ tab == 'agents' ? 'active show' : '']" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <ajax-form action="createAgent" :syncing.sync="userSyncing" :cloud-error.sync="userCloudError" :form-data="userFormData" :form-rules="userFormRules" :form-errors.sync="formErrors" @submitted="addAgent()">
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="full-name">Full name</label>
-                <input class="form-control" id="user-full-name" name="user-full-name" type="text"  :class="[formErrors.userFullName ? 'is-invalid' : '']" v-model.trim="userFormData.userFullName" placeholder="john doe" autocomplete="name" focus-first>
-                <div class="invalid-feedback" v-if="formErrors.userFullName">Please enter your full name.</div>
+                <label for="user-first-name">First name</label>
+                <input class="form-control" id="user-first-name" name="user-first-name" type="text"  :class="[formErrors.userFirstName ? 'is-invalid' : '']" v-model.trim="userFormData.userFirstName" placeholder="john" autocomplete="name" focus-first>
+                <div class="invalid-feedback" v-if="formErrors.userFirstName">Please enter your first name.</div>
               </div>
             </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="user-last-name">Last name</label>
+                <input class="form-control" id="user-last-name" name="user-last-name" type="text"  :class="[formErrors.userLastName ? 'is-invalid' : '']" v-model.trim="userFormData.userLastName" placeholder="doe" autocomplete="name">
+                <div class="invalid-feedback" v-if="formErrors.userLastName">Please enter your last name.</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="user-email-address">Email address</label>
                 <input class="form-control" id="user-email-address" name="user-email-address" type="email"  :class="[formErrors.userEmailAddress ? 'is-invalid' : '']" v-model.trim="userFormData.userEmailAddress" placeholder="alryazan@amazon.com" autocomplete="email">
                 <div class="invalid-feedback" v-if="formErrors.userEmailAddress">Please enter a valid email address.</div>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <!-- <div class="form-group">
-                <label for="full-name">Full name</label>
-                <input class="form-control" id="user-full-name" name="user-full-name" type="text"  :class="[formErrors.userFullName ? 'is-invalid' : '']" v-model.trim="formData.userFullName" placeholder="john doe" autocomplete="name">
-                <div class="invalid-feedback" v-if="formErrors.userFullName">Please enter your full name.</div>
-              </div> -->
             </div>
             <div class="col-sm-6">
               <div class="form-group">
@@ -92,19 +93,11 @@
             </div>
           </div>
         </ajax-form>
-        <% req.me.agents.forEach(function(agent){ %>
-          <div class="agent-item">
-            <div class="row mb-3">
-              <div class="col-sm-6">
-                <span><%= agent.fullName %></span>
-              </div>
-            </div>
-          </div>
-        <% }) %>
+        TODO: need permission creation as well!
         <div v-for="(agent, index) in agents" class="agent-item" :key="index">
           <div class="row mb-3">
             <div class="col-sm-6">
-              <span>{{agent.fullname}}</span>
+              <span>{{agent.firstName}} {{agent.lastName}}</span>
             </div>
           <hr/>
           </div>
@@ -112,5 +105,7 @@
       </div>
     </div>
   </div>
+
+  <router-view></router-view>
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

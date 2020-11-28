@@ -47,15 +47,8 @@ the account verification message.)`,
       type: 'string',
       example: 'Rivera',
       description: 'The user\'s last name.',
-    },
-
-    age:  {
-      required: true,
-      type: 'string',
-      example: '21',
-      description: 'The user\'s age.',
     }
-
+    
   },
 
 
