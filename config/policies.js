@@ -23,5 +23,6 @@ module.exports.policies = {
   'deliver-contact-form-message': true,
 
   'meetings/update-meeting':'is-allowed',
+  'meetings/view-edit':'is-allowed',
 
 };
