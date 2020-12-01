@@ -22,4 +22,7 @@ module.exports.policies = {
   'legal/view-privacy': true,
   'deliver-contact-form-message': true,
 
+  'meetings/update-meeting':'is-allowed',
+  'meetings/view-edit':'is-allowed',
+
 };

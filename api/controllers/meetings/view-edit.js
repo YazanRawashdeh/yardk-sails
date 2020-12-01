@@ -17,12 +17,8 @@ module.exports = {
 
 
   fn: async function () {
-    var res = this.res;
     const slug = this.req.param('slug');
     const meeting = await Meeting.findOne({slug}).populate('comments');
-    const userId = this.req.me.id;
-    if(meeting.creator !== userId)
-      return res.notFound();
     // we're using ids not slugs since this is internal (and generally DB merciful)
     const ids = _.pluck(meeting.comments,'id');
     // get comments creators, neat!!
