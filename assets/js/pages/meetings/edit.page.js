@@ -51,11 +51,9 @@ parasails.registerPage('edit', {
     // io.socket.on('connect', function onConnect(){
     //   console.log('This socket is now connected to the Sails server.');
     // });
+    const meetingId = this.meeting.id;
 
-
-    io.socket.get('/comments/publish', (body, response) => {
-      // console.log(body)
-      // console.log(response);
+    io.socket.get(`/comments/publish?meetingId=${meetingId}`, (body, response) => {
     })
 
     const comments = this.comments;

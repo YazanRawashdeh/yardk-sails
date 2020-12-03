@@ -40,7 +40,7 @@ module.exports = {
     // assume I'm the creator always
     comment.creator = this.req.me;
 
-    sails.sockets.broadcast('meetingComments', 'comment', {comment});
+    sails.sockets.broadcast(`${id}-meetingComments`, 'comment', {comment});
     // All done.
     return;
 

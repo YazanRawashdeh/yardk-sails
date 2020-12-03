@@ -36,11 +36,39 @@
         </div>
       </ajax-form>
       <hr/>
-      <div class="row comments">
-        <div v-for="(comment,index) in comments" class="col-sm-3 comment" :key="index">
-          <small>Comment By {{comment.creator.firstName}} {{comment.creator.lastName}}</small>
-          </br>
-          {{comment.text}}
+      <h2>{{comments.length}} Comments</h2>
+      <div class="card border-bottom-0" v-for="(comment,index) in comments" :key="index">
+        <div class="card-body">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                    </div>
+                    <div class="col-md-6">
+                      <strong>{{comment.creator.firstName}} {{comment.creator.lastName}}</strong>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-9">
+                    <p>{{comment.text}}</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p>
+                      <small class="text-secondary text-center ">15 Minutes Ago</small>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                    </p>
+                    <a class="float-right btn-sm btn-dark text-white ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                    <a class="float-right btn-sm text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
       </div>
       <hr/>
