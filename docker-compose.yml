@@ -9,17 +9,11 @@ services:
         ports: 
             - "9000:1337"
         volumes:
-<<<<<<< HEAD
-            - ./:/app
-        environment:
-            MONGO_HOST: mongo
-=======
             - .:/usr/app/
             - /usr/app/node_modules
         #     - .:/app
         # environment: 
         #     NODE_ENV: production
->>>>>>> maps volumes for better developer exp.
         links:
             - redis
             - mongo
