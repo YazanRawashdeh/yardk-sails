@@ -13,16 +13,14 @@ parasails.registerComponent('downloadMobileApp', {
   //  ╔═╗╦═╗╔═╗╔═╗╔═╗
   //  ╠═╝╠╦╝║ ║╠═╝╚═╗
   //  ╩  ╩╚═╚═╝╩  ╚═╝
-  props: [
-
-  ],
+  props: [],
 
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
-  data: function (){
+  data: function () {
     return {
-      //…
+      isDownloadMobileBannerVisible: !this.isPopupHidden()
     };
   },
 
@@ -30,19 +28,35 @@ parasails.registerComponent('downloadMobileApp', {
   //  ╠═╣ ║ ║║║║
   //  ╩ ╩ ╩ ╩ ╩╩═╝
   template: `
-  <div>placeholder</div>
-  `,
+<div class="fixed-bottom">
+     <div id="download-mobile-app-banner" v-if="isDownloadMobileBannerVisible" class="alert alert alert-light alert-dismissible fade show d-lg-none bg-white" role="alert">
+        <a href="#">
+            <img src="http://via.placeholder.com/60" class="rounded-3 d-inline" alt="">
+            <span class="btn btn-link">
+            For a better experience<br>
+            <strong>Download our App</strong><br>
+            </span>
+            <span class="btn btn-primary open-app">Open App</span>
+        </a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span class="text-dark" aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    </div>
+`,
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
+  beforeMount: function () {
     //…
   },
-  mounted: async function(){
-    //…
+  mounted: async function () {
+    $('#download-mobile-app-banner').on('closed.bs.alert', function () {
+      localStorage.setItem('hidePopup', 'true');
+    });
   },
-  beforeDestroy: function() {
+  beforeDestroy: function () {
     //…
   },
 
@@ -50,6 +64,9 @@ parasails.registerComponent('downloadMobileApp', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
+    isPopupHidden: function () {
+      var hidePopup = localStorage.getItem('hidePopup');
+      return !!hidePopup;
+    },
   }
 });
