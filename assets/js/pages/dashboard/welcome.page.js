@@ -14,20 +14,7 @@ parasails.registerPage('welcome', {
     //…
   },
   mounted: async function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'timeGridWeek',
-      themeSystem: 'bootstrap',
-      headerToolbar:{
-        start: 'title',
-        center: '',
-        end: 'dayGridWeek,timeGridWeek,listWeek,dayGridMonth,today prev,next'
-      },
-      dateClick: function() {
-        alert('a day has been clicked!');
-      }
-    });
-    calendar.render();
+    
   },
 
   //  ╦  ╦╦╦═╗╔╦╗╦ ╦╔═╗╦    ╔═╗╔═╗╔═╗╔═╗╔═╗

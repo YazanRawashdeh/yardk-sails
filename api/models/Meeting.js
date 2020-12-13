@@ -3,7 +3,7 @@ module.exports = {
       slug:{
         type: 'string',
         unique: true,
-        description: 'slug for public consumption liek urls instead of id',
+        description: 'slug for public consumption like urls instead of id',
         example: 'd94ed771bcecb16e12dc1fd0292358020368b22b'
       },
       
@@ -23,14 +23,34 @@ module.exports = {
   
       status: {
         type: 'string',
-        isIn: ['unapproved', 'change-requested', 'approved'],
-        defaultsTo: 'unapproved',
+        isIn: ['upcoming', 'due', 'running'],
+        defaultsTo: 'upcoming',
         description: 'The approval status of the user\'s meeting.',
       },
 
-      time: {
+      startTime: {
         type: 'string',
         description: 'The time of the user\'s meeting.',
+      },
+
+      endTime: {
+        type: 'string',
+        description: 'The time of the user\'s meeting.',
+      },
+
+      duration: {
+        type: 'string',
+        description: 'The duration of the user\'s meeting.',
+      },
+
+      timezone: {
+        type: 'string',
+        description: 'The timezone of the user\'s meeting.',
+      },
+
+      isPublic: {
+        type: 'boolean',
+        description: 'Whether the meeting is viewable by everyone or not.',
       },
 
       creator: {

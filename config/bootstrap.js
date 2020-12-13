@@ -68,11 +68,11 @@ module.exports.bootstrap = async function() {
 
   if(someUser) {
     await Meeting.createEach([
-      { slug:'MeetingSlug-12',title: 'some title kqweqwen', notes: 'notes asd', time: '2020/20/10', creator: someUser.id, status: 'approved' },
-      { slug:'AOC-31',title: 'kqwemjkv some title', notes: 'notesqe', time: '2020/20/10', creator: someUser.id, status: 'approved' },
-      { slug:'CommunityShop-3',title: 'ppoajdpi some title', notes: 'notes kqerj', time: '2020/20/10', creator: someUser.id, status: 'unapproved' },
-      { slug:'123456',title: 'some adpasdmpkad title', notes: 'notes kadj', time: '2020/20/10', creator: someUser.id, status: 'approved' },
-      { slug:'slugish',title: 'some asdapsdmpoakdspok title', notes: 'notes jjja', time: '2020/20/10', creator: someUser.id, status: 'approved' }
+      { slug:'MeetingSlug-12',title: 'some title kqweqwen', notes: 'notes asd', startTime: '2020/20/10',endTime: '2020/20/10',duration: '30',timezone: 'Asia/Amman',isPublic: true ,creator: someUser.id, status: 'upcoming' },
+      { slug:'AOC-31',title: 'kqwemjkv some title', notes: 'notesqe', startTime: '2020/20/10',endTime: '2020/20/10',duration: '30',timezone: 'Asia/Amman',isPublic: false ,creator: someUser.id, status: 'upcoming' },
+      { slug:'CommunityShop-3',title: 'ppoajdpi some title', notes: 'notes kqerj', startTime: '2020/20/10',endTime: '2020/20/10',duration: '30',timezone: 'Asia/Amman',isPublic: true ,creator: someUser.id, status: 'upcoming' },
+      { slug:'123456',title: 'some adpasdmpkad title', notes: 'notes kadj', startTime: '2020/20/10',endTime: '2020/20/10',duration: '30',timezone: 'Asia/Amman',isPublic: false ,creator: someUser.id, status: 'upcoming' },
+      { slug:'slugish',title: 'some asdapsdmpoakdspok title', notes: 'notes jjja', startTime: '2020/20/10',endTime: '2020/20/10',duration: '30',timezone: 'Asia/Amman',isPublic: true ,creator: someUser.id, status: 'upcoming' }
     ]);
 
     await User.createEach([
